@@ -2,6 +2,9 @@ import { useState } from "react";
 import { coffees } from "../data/coffeeData";
 
 function CoffeeSuggester() {
+
+  const vibes = ['comforting', 'bold', 'smooth', 'adventourous'];
+
   const [selectedStrength, setSelectedStrength] = useState(null);
   const [selectedCreaminess, setSelectedCreaminess] = useState(null);
   const [selectedVibe, setSelectedVibe] = useState(null);
@@ -59,10 +62,14 @@ function CoffeeSuggester() {
     return "";
   };
 
+  const handleVibeButton = (vibe) => {
+    setSelectedVibe(selectedVibe === vibe ? null : vibe)
+  }
+
   return (
-    <div className="flex-col">
+    <div className="flex-col items-center p-20">
       {/* Filters (strength)*/}
-      <div className=" border-2 space-y-8">
+      <div className="space-y-8">
         <input
           type="range"
           min="0"
@@ -74,7 +81,7 @@ function CoffeeSuggester() {
           }}
           className="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
         />
-        <div className="border flex justify-between">
+        <div className="flex justify-between text-sm">
           <span>Any</span>
           <span>Mild</span>
           <span>Light</span>
@@ -84,7 +91,7 @@ function CoffeeSuggester() {
         </div>
       </div>
       {/* Filters (Creaminess) */}
-      <div className="border-2 space-y-8">
+      <div className="space-y-8 mt-8">
           <input
             type="range"
             min="0"
@@ -92,17 +99,32 @@ function CoffeeSuggester() {
             value={selectedCreaminess || 0}
             onChange={(e) => {
               const val = parseInt(e.target.value);
-              selectedCreaminess(val === 0 ? null : val);
+              setSelectedCreaminess(val === 0 ? null : val);
             }}
-            className="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-300"
+            className="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
           />
-          <div className="flex justify-between border">
+          <div className="flex justify-between items-center text-sm">
             <span>Black</span>
             <span>Barely There</span>
             <span>Balanced</span>
             <span>Creamy</span>
             <span>Extra Creamy</span>
           </div>
+      </div>
+      {/* Vibe Buttons */}
+      <div>
+        {vibes.map((vibe, index) => (
+          <button 
+            key={index}
+            onClick={handleVibeButton}
+            className={`px-6 py-2 rounded-full tansition-all capitalize ${selectedVibe === vibe ? 'bg-rose-500 text-white shadow-md': 'bg-rose-100 text-rose-800 hover:bg-rose-200'}`}>
+            {vibe === 'comforting' && '🤗 '}
+            {vibe === 'bold' && '⚡ '}
+            {vibe === 'smooth' && '✨ '}
+            {vibe === 'adventurous' && '🌟 '}
+            {vibe}
+            </button>
+        ))}
       </div>
     </div>
   );

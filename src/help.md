@@ -1,17 +1,17 @@
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 p-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-amber-900 mb-2">☕ cafino</h1>
-          <p className="text-amber-700">find your perfect coffee match</p>
-        </div>
+return (
+<div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 p-6">
+<div className="max-w-6xl mx-auto">
+{/_ Header _/}
+<div className="text-center mb-12">
+<h1 className="text-5xl font-bold text-amber-900 mb-2">☕ cafino</h1>
+<p className="text-amber-700">find your perfect coffee match</p>
+</div>
 
         {/* Filters */}
         <div className="bg-white rounded-3xl shadow-lg p-8 mb-8">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold text-amber-900">What are you in the mood for?</h2>
-            <button 
+            <button
               onClick={resetFilters}
               className="text-sm text-amber-600 hover:text-amber-800 underline"
             >
@@ -113,11 +113,11 @@
         {/* Results */}
         <div>
           <h2 className="text-2xl font-semibold text-amber-900 mb-4">
-            {suggestions.length === coffees.length 
-              ? 'All Coffees' 
+            {suggestions.length === coffees.length
+              ? 'All Coffees'
               : `${suggestions.length} ${suggestions.length === 1 ? 'Match' : 'Matches'}`}
           </h2>
-          
+
           {suggestions.length === 0 ? (
             <div className="bg-white rounded-3xl shadow-lg p-12 text-center">
               <p className="text-xl text-amber-700">No matches found. Try adjusting your filters!</p>
@@ -125,15 +125,15 @@
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {suggestions.map(coffee => (
-                <div 
-                  key={coffee.id} 
+                <div
+                  key={coffee.id}
                   className="bg-white rounded-3xl shadow-lg p-6 hover:shadow-xl transition-shadow"
                 >
                   <h3 className="text-2xl font-bold text-amber-900 mb-2">
                     {coffee.name}
                   </h3>
                   <p className="text-amber-700 mb-4">{coffee.description}</p>
-                  
+
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
                       <span className="text-amber-600 font-medium">Strength:</span>
@@ -163,7 +163,8 @@
         </div>
       </div>
     </div>
-  );
+
+);
 }
 
 export default CoffeeSuggester;
