@@ -126,6 +126,18 @@ function CoffeeSuggester() {
             </button>
         ))}
       </div>
+      {/* Rendering the different Coffee Orders */}
+      <div>
+        {suggestions.map((coffee) => (
+          <div
+            key={coffee.id}
+            className="bg-white rounded-3xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3>{coffee.name}</h3>
+            <p>{coffee.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
